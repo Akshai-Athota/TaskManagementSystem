@@ -7,8 +7,6 @@ import com.aksahi.Users.Service.Repository.UserRepository;
 import com.aksahi.Users.Service.Service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @NoArgsConstructor
@@ -18,11 +16,9 @@ public class UserServiceImpl implements UserService {
 
     private  UserRepository userRepository;
     private  UserMapper userMapper;
-    private  PasswordEncoder passwordEncoder;
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
-        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         return userMapper.toDTO(userRepository.save(userMapper.toEntity(userDTO)));
     }
 
@@ -32,7 +28,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(()-> new RuntimeException("no user found"));
         user.builder()
                 .userName(userDTO.getUserName())
-                .password(passwordEncoder.encode(userDTO.getPassword()))
+                .password(userDTO.getPassword())
                 .role(userDTO.getRole())
                 .build();
         return userMapper.toDTO(userRepository.save(user));
