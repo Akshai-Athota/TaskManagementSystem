@@ -7,6 +7,8 @@
         <option value="$PROJECT_DIR$/Task-MicroService/pom.xml" />
         <option value="$PROJECT_DIR$/AI-MicroService/pom.xml" />
         <option value="$PROJECT_DIR$/Service-Registry/pom.xml" />
+        <option value="$PROJECT_DIR$/Gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Users-Service/pom.xml" />
       </list>
     </option>
   </component>
